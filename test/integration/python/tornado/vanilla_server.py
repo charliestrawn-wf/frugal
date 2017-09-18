@@ -5,7 +5,7 @@ import sys
 import thread
 
 sys.path.append('..')
-sys.path.append('gen-py')
+sys.path.append('gen_py')
 
 from frugal.context import FContext
 from frugal.provider import FScopeProvider

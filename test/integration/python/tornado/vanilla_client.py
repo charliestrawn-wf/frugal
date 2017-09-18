@@ -3,7 +3,7 @@ from __future__ import print_function
 import argparse
 import sys
 
-sys.path.append('gen-py')
+sys.path.append('gen_py')
 sys.path.append('..')
 
 from frugal.context import FContext
