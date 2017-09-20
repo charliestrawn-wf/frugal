@@ -22,3 +22,6 @@ generate: clean
 		-exec frugal -r -out $(PYTHON_TORNADO) --gen py:tornado {} \; \
 		-exec frugal -r -out $(PYTHON_ASYNCIO) --gen py:asyncio {} \; \
 		-exec frugal -r -out $(DART) --gen dart:use_enums=true {} \;
+
+link-go-deps:
+	ln -s vendor go/vendor

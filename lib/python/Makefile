@@ -29,18 +29,19 @@ flake8-py2:
 	flake8 --exclude=tests,frugal/aio
 
 flake8-py3:
+	python --version
 	flake8 --exclude=tests,frugal/tornado
 
-unit-py2:
+unit-py2: deps-tornado deps-gae flake8-py2
 	nosetests --exclude-dir=frugal/aio --exclude-dir=frugal/tests/aio --logging-level=ERROR --with-coverage --cover-package=frugal
 
-unit-py3:
+unit-py3: deps-asyncio flake8-py3
 	nosetests --exclude-dir=frugal/tornado --exclude-dir=frugal/tests/tornado --exclude-dir=frugal/gae --exclude-dir=frugal/tests/gae --logging-level=ERROR --with-coverage --cover-package=frugal
 
-xunit-py2:
+xunit-py2: deps-tornado deps-gae flake8-py2
 	nosetests --exclude-dir=frugal/aio --exclude-dir=frugal/tests/aio --logging-level=ERROR --with-coverage --cover-package=frugal --with-xunit --xunit-file=unit_tests_py2.xml
 
-xunit-py3:
+xunit-py3: deps-asyncio flake8-py3
 	nosetests --exclude-dir=frugal/tornado --exclude-dir=frugal/tests/tornado --exclude-dir=frugal/gae --exclude-dir=frugal/tests/gae --logging-level=ERROR --with-coverage --cover-package=frugal --with-xunit --xunit-file=unit_tests_py3.xml
 
 install:
