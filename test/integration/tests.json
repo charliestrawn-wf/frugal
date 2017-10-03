@@ -1,37 +1,17 @@
 [
-    {
-    "name": "dart",
-    "client": {
-      "timeout": 15,
-      "transports": [ "http" ],
-      "protocols": [ "binary", "compact", "json" ],
-      "command": [ "dart", "test_client/bin/main.dart" ]
-    },
-    "workdir": "dart"
-  },
+
   {
     "name": "go",
     "server": {
       "timeout": 8,
-      "command": [
-        "go/bin/testserver"
-      ]
+      "command": [ "go/testserver" ]
     },
     "client": {
       "timeout": 8,
-      "command": [
-        "go/bin/testclient"
-      ]
+      "command": [ "go/testclient" ]
     },
-    "transports": [
-      "stateless",
-      "http"
-    ],
-    "protocols": [
-      "binary",
-      "compact",
-      "json"
-    ]
+    "transports": [ "stateless", "http" ],
+    "protocols": [ "binary", "compact", "json" ]
   },
    {
     "name": "java",
@@ -66,11 +46,11 @@
     "name": "py:asyncio",
     "client": {
       "timeout": 7,
-      "command": ["python3.5", "-u", "client.py" ]
+      "command": [ "python3", "-u", "client.py" ]
     },
     "server": {
       "timeout": 7,
-      "command": [ "python3.5", "-u", "server.py" ]
+      "command": [ "python3", "-u", "server.py" ]
     },
     "transports": [ "stateless", "http" ],
     "protocols": [ "binary", "compact", "json" ],
@@ -80,7 +60,7 @@
     "name": "py:vanilla",
     "client": {
       "timeout": 7,
-      "command": [  "python", "-u", "vanilla_client.py" ]
+      "command": [ "python", "-u", "vanilla_client.py" ]
     },
     "server": {
       "timeout": 7,

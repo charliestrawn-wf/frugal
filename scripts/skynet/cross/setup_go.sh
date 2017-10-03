@@ -14,5 +14,5 @@ cd $FRUGAL_HOME
 rm -rf test/integration/go/bin/*
 cd test/integration/go
 glide install
-go build -o bin/testclient src/bin/testclient/main.go
-go build -o bin/testserver src/bin/testserver/main.go
+go build testclient.go
+go build testserver.go

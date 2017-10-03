@@ -1,10 +1,20 @@
-THIS_REPO = github.com/Workiva/frugal
-GO = go/gen
-PYTHON = python/vanilla/gen_py
-PYTHON_TORNADO = python/tornado/gen_py_tornado
-PYTHON_ASYNCIO = python/asyncio/gen_py_asyncio
-DART = dart/gen-dart
-JAVA = java/frugal-integration-test/gen-java
+THIS_REPO      := github.com/Workiva/frugal
+GO             := go/gen
+PYTHON         := python/vanilla/gen_py
+PYTHON_TORNADO := python/tornado/gen_py_tornado
+PYTHON_ASYNCIO := python/asyncio/gen_py_asyncio
+DART           := dart/gen-dart
+JAVA           := java/frugal-integration-test/gen-java
+
+all: generate
+
+test: 
+	@echo "hello from integration dir"
+
+setup: setup-java
+
+setup-java:
+	mv ../../lib/java/target/frugal-$(VERSION).jar
 
 clean:
 	@-rm -rf $(GO)
@@ -23,5 +33,11 @@ generate: clean
 		-exec frugal -r -out $(PYTHON_ASYNCIO) --gen py:asyncio {} \; \
 		-exec frugal -r -out $(DART) --gen dart:use_enums=true {} \;
 
-link-go-deps:
-	ln -s vendor go/vendor
+gnatsd:
+	gnatsd&
+
+.PHONY: \
+	all \
+	clean \
+	generate \
+	gnatsd

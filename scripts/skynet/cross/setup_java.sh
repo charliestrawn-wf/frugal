@@ -3,20 +3,15 @@
 set -ex
 
 export FRUGAL_HOME=$GOPATH/src/github.com/Workiva/frugal
-TEST_PATH=$FRUGAL_HOME/test/integration/java
+TEST_PATH=$FRUGAL_HOME/test/integration/java/frugal-integration-test
 
 if [ -z "${IN_SKYNET_CLI+yes}" ]; then
-    cp $SKYNET_APPLICATION_FRUGAL_ARTIFACTORY $TEST_PATH/frugal-integration-test/frugal.jar
+    cp $SKYNET_APPLICATION_FRUGAL_ARTIFACTORY $TEST_PATH
 else
     cd $FRUGAL_HOME/lib/java
-    mvn clean verify -q
-    mv $(find target -type f -name 'frugal-*.*.*.jar' | grep -v sources | grep -v javadoc) $TEST_PATH/frugal-integration-test/frugal.jar
+    mvn clean package -DskipTests=true -Dsource.skip=true -Dmaven.javadoc.skip=true
+    mv $(find target -type f -name 'frugal-*.*.*.jar') $TEST_PATH
 fi
 
-cd $TEST_PATH/frugal-integration-test
-mvn clean install:install-file -Dfile=frugal.jar -U -q
-
-# Compile java tests
-mvn clean compile assembly:single -U -q
-
-mv $TEST_PATH/frugal-integration-test/target/frugal-integration-test-1.0-SNAPSHOT-jar-with-dependencies.jar $TEST_PATH/frugal-integration-test/cross.jar
+mvn -f $TEST_PATH/pom.xml clean install:install-file -Dfile=$(find $TEST_PATH -type f -name 'frugal-*.*.*.jar') -U -q
+mvn -f $TEST_PATH/pom.xml clean compile assembly:single -U -q

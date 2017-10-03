@@ -1,0 +1,34 @@
+hash: 20960373be51ce3b867d06c14ec0c4a2d424dd9de6bcbba77e2eb925ed457f5b
+updated: 2017-09-21T14:26:06.464962761-05:00
+imports:
+- name: git.apache.org/thrift.git
+  version: b2a4d4ae21c789b689dd162deb819665567f481c
+  subpackages:
+  - lib/go/thrift
+- name: github.com/mattrobenolt/gocql
+  version: 56c5a46b65eead93e1e53e983d1b2e7dbfde570d
+  subpackages:
+  - uuid
+- name: github.com/nats-io/go-nats
+  version: 29f9728a183bf3fa7e809e14edac00b33be72088
+  subpackages:
+  - encoders/builtin
+  - util
+- name: github.com/nats-io/nuid
+  version: 289cccf02c178dc782430d534e3c1f5b72af807f
+- name: github.com/Sirupsen/logrus
+  version: f006c2ac4710855cf0f916dd6b77acf6b048dc6e
+- name: github.com/Workiva/frugal
+  version: 8208673be5888bfbb4fb395ad9acce2210496279
+  subpackages:
+  - lib/go
+- name: golang.org/x/crypto
+  version: 7d9177d70076375b9a59c8fde23d52d9c4a7ecd5
+  subpackages:
+  - ssh/terminal
+- name: golang.org/x/sys
+  version: f64b50fbea64174967a8882830d621a18ee1548e
+  subpackages:
+  - unix
+  - windows
+testImports: []
